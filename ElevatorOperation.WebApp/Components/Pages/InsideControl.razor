@@ -1,0 +1,42 @@
+﻿<div class="row border-bottom">
+    <div class="col">
+        <div class="row border-bottom" style="height:2vh;">
+            <div class="col text-center">
+                <h6>Floor @FloorNumber</h6>
+            </div>            
+        </div>
+        <div class="row align-items-center" style="height:17vh;">
+            <div class="col text-center">
+                <div style="display: @ElevatorShow">
+                    <div class="mb-2">
+                        <img @onclick=@(async () => { await GoToFloor(5); }) src="./images/number-circle-five.256x256.png" alt="5 in a circle" style="height:30px; cursor:pointer;" />
+                    </div>
+                    <div class="mb-2">
+                        <img @onclick=@(async () => { await GoToFloor(4); }) src="./images/number-circle-four.256x256.png" alt="4 in a circle" style="height:30px; cursor:pointer;" />
+                        <img @onclick=@(async () => { await GoToFloor(3); }) src="./images/number-circle-three.256x256.png" alt="3 in a circle" style="height:30px; cursor:pointer;" />
+                    </div>
+                    <div>
+                        <img @onclick=@(async () => { await GoToFloor(2); }) src="./images/number-circle-two.256x256.png" alt="2 in a circle" style="height:30px; cursor:pointer;" />
+                        <img @onclick=@(async () => { await GoToFloor(1); }) src="./images/number-circle-one.256x256.png" alt="1 in a circle" style="height:30px; cursor:pointer;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int FloorNumber { get; set; }
+
+    [Parameter]
+    public string? ElevatorShow { get; set; }
+
+    [Parameter]
+    public EventCallback<int> OnFloorNumberClicked { get; set; }
+
+    public async Task GoToFloor(int floorNumber)
+    {
+        await OnFloorNumberClicked.InvokeAsync(floorNumber);
+    }
+}

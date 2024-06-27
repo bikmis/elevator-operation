@@ -1,0 +1,38 @@
+﻿<div class="row border-bottom">
+    <div class="col">
+        <div class="row border-bottom" style="height:2vh;">
+            <div class="col text-center">
+                <h6>Floor @FloorNumber</h6>
+            </div>            
+        </div>        
+        <div class="row align-items-center" style="height:17vh;">
+            <div class="col text-center">
+                <div class="mb-2" style="display: @UpArrowShow">
+                    <img @onclick=@(async () => { await GoToFloor(FloorNumber);}) style="cursor:pointer;" src="./images/up-arrow.svg" alt="up arrow" />
+                </div>
+                <div style="display: @DownArrowShow">
+                    <img @onclick=@(async () => { await GoToFloor(FloorNumber);}) style="cursor:pointer;" src="./images/down-arrow.svg" alt="down arrow" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int FloorNumber { get; set; }
+
+    [Parameter]
+    public string? UpArrowShow { get; set; }
+
+    [Parameter]
+    public string? DownArrowShow { get; set; }
+
+    [Parameter]
+    public EventCallback<int> OnArrowClicked { get; set; }
+
+    public async Task GoToFloor(int floorNumber)
+    {
+        await OnArrowClicked.InvokeAsync(floorNumber);
+    }
+}

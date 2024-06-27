@@ -1,0 +1,66 @@
+﻿@page "/"
+
+<div class="container">
+    <div class="row" style="height:100vh">
+        <div style="width: 25px; background-color:gray"> </div>
+        <div class="col-1">
+            <div class="row border-bottom align-items-center" style="height:5vh;">
+                <div class="col text-center">
+                    <h5>Left</h5>
+                </div>
+            </div>            
+            <OutsideControl FloorNumber=5 UpArrowShow="none" DownArrowShow="block" OnArrowClicked="GetDestinationFloor" />
+            <OutsideControl FloorNumber=4 UpArrowShow="block" DownArrowShow="block" OnArrowClicked="GetDestinationFloor" />
+            <OutsideControl FloorNumber=3 UpArrowShow="block" DownArrowShow="block" OnArrowClicked="GetDestinationFloor" />
+            <OutsideControl FloorNumber=2 UpArrowShow="block" DownArrowShow="block" OnArrowClicked="GetDestinationFloor" />
+            <OutsideControl FloorNumber=1 UpArrowShow="block" DownArrowShow="none" OnArrowClicked="GetDestinationFloor" />
+        </div>
+
+        <div style="width: 25px; background-color:gray"> </div>
+
+        <div class="col">
+            <div class="row border-bottom align-items-center" style="height:5vh;">
+                <div class="col text-center">
+                    <h5>Elevator</h5>
+                </div>
+            </div>
+            <InsideControl FloorNumber=5 ElevatorShow=@(DestinationFloorNumber == 5 ? "block" : "none") OnFloorNumberClicked="GetDestinationFloor" />
+            <InsideControl FloorNumber=4 ElevatorShow=@(DestinationFloorNumber == 4 ? "block" : "none") OnFloorNumberClicked="GetDestinationFloor" />
+            <InsideControl FloorNumber=3 ElevatorShow=@(DestinationFloorNumber == 3 ? "block" : "none") OnFloorNumberClicked="GetDestinationFloor" />
+            <InsideControl FloorNumber=2 ElevatorShow=@(DestinationFloorNumber == 2 ? "block" : "none") OnFloorNumberClicked="GetDestinationFloor" />
+            <InsideControl FloorNumber=1 ElevatorShow=@(DestinationFloorNumber == 1 ? "block" : "none") OnFloorNumberClicked="GetDestinationFloor" />
+        </div>
+        <div style="width: 25px; background-color:gray"> </div>
+        <div class="col-1">
+            <div class="row border-bottom align-items-center" style="height:5vh;">
+                <div class="col text-center">
+                    <h5>Right</h5>
+                </div>
+            </div>
+            <OutsideControl FloorNumber=5 UpArrowShow="none" DownArrowShow="block" OnArrowClicked="GetDestinationFloor" />
+            <OutsideControl FloorNumber=4 UpArrowShow="block" DownArrowShow="block" OnArrowClicked="GetDestinationFloor" />
+            <OutsideControl FloorNumber=3 UpArrowShow="block" DownArrowShow="block" OnArrowClicked="GetDestinationFloor" />
+            <OutsideControl FloorNumber=2 UpArrowShow="block" DownArrowShow="block" OnArrowClicked="GetDestinationFloor" />
+            <OutsideControl FloorNumber=1 UpArrowShow="block" DownArrowShow="none" OnArrowClicked="GetDestinationFloor" />
+        </div>
+        <div style="width: 25px; background-color:gray"> </div>
+    </div>
+</div>
+
+
+@code {
+    public int DestinationFloorNumber { get; set; } = 1;
+
+    public void GetDestinationFloor(int destinationFloorNumber)
+    {
+        DestinationFloorNumber = destinationFloorNumber;
+    }
+
+    public void OnArrowClicked(int floorNumberToGo)
+    {
+            DestinationFloorNumber = floorNumberToGo;    
+    }
+}
+
+
+
